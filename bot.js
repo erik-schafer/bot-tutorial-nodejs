@@ -8,8 +8,8 @@ function respond() {
   console.log("req incoming, " + request.text);
   if(request.text) {
     var txt = request.text; 
-    var spreadsheet = txt.test(/spreadsheet/,'i');
-    var goodBot     = txt.test(/good\s*bot/,'i');
+    var spreadsheet = /spreadsheet/.test(txt, 'i');
+    var goodBot     = /good\s*bot/.test(txt, 'i');
     this.res.writeHead(200);
     if(spreadsheet) {
       postMessage('spreadsheet url!');
