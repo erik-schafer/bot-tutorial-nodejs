@@ -7,8 +7,7 @@ var embarassed = false;
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   //console.log('request.name ' + request.name);
-  //console.log('request.user_id ' + request.user_id);
-  //console.log("req incoming, " + request.text);
+  console.log("req incoming: "  + request.name + "(" +request.user_id + "):"  + request.text);
   if(request.text && request.name != 'pushupgang' && request.user_id != 606072) {
     var txt = request.text; 
     var spreadsheet = /spreadsheet/.test(txt, 'i');
