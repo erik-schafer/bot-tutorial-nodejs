@@ -2,9 +2,12 @@ var HTTPS = require('https');
 var cool = require('cool-ascii-faces');
 
 var botID = process.env.BOT_ID;
+var embarassed = false;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
+  console.log('request.name ' + request.name);
+  console.log('request.user_id ' + request.user_id);
   console.log("req incoming, " + request.text);
   if(request.text) {
     var txt = request.text; 
@@ -12,9 +15,11 @@ function respond() {
     var goodBot     = /good\s*bot/.test(txt, 'i');
     this.res.writeHead(200);
     if(spreadsheet) {
-      postMessage('spreadsheet url!');
+      postMessage('https://docs.google.com/spreadsheets/d/1GHTWiXzSy0kVIcrUTnNgsy8MglWhNKEMzd7qAvfpNwc/edit?ouid=112045919249534101904&usp=sheets_home&ths=true');
+      embarassed = false;
     } else if(goodBot) {
       postMessage('awww, gee thanks :3');
+      embarassed = true;
     } else {
       //nth
     }
