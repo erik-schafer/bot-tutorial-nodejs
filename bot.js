@@ -18,10 +18,10 @@ function respond() {
     //  if regex match
     //    do response
 
-    var spreadsheet = /spreadsheet/.test(txt, 'i');
-    var goodBot     = /good\s*bot/.test(txt, 'i');
-    var badBot      = /bad\s*bot/.test(txt, 'i');
-    var tobor       = /tobor/.test(txt, 'i');
+    var spreadsheet = /spreadsheet/i.test(txt);
+    var goodBot     = /good\s*bot/i.test(txt);
+    var badBot      = /bad\s*bot/i.test(txt);
+    var tobor       = /tobor/i.test(txt);
     var minuteElapsed = (Date.now() - lastSpreadsheetTime) > 60000;
 
     this.res.writeHead(200);
@@ -33,7 +33,7 @@ function respond() {
       postMessage('awww, gee thanks :3');
       embarassed = true;
     } else if(badBot) {
-      postMessage('careful ...I know the launch codes');
+      postMessage('careful ...I have the launch codes');
       embarassed = true;
     } else if(tobor) {
       postMessage('Tobor!');
