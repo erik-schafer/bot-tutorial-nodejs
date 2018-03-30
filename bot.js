@@ -17,7 +17,7 @@ function respond() {
     if(spreadsheet) {
       postMessage('https://docs.google.com/spreadsheets/d/1GHTWiXzSy0kVIcrUTnNgsy8MglWhNKEMzd7qAvfpNwc/edit?ouid=112045919249534101904&usp=sheets_home&ths=true');
       embarassed = false;
-    } else if(goodBot) {
+    } else if(goodBot && !embarassed) {
       postMessage('awww, gee thanks :3');
       embarassed = true;
     } else {
