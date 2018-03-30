@@ -5,23 +5,26 @@ var botID = process.env.BOT_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/cool guy$/;
-
-  if(request.text && botRegex.test(request.text)) {
+  if(request.text) {
+    var txt = request.text; 
+    var spreadsheet = txt.test(/spreadsheet/,'i');
+    var goodBot     = txt.test(/good\s*bot/,'i');
     this.res.writeHead(200);
-    postMessage();
-    this.res.end();
-  } else {
-    console.log("don't care");
-    this.res.writeHead(200);
-    this.res.end();
+    if(spreadsheet) {
+      postMessage('spreadsheet url!');
+    } else if(goodBot) {
+      postMessage('awww, gee thanks :3');
+    } else {
+      //nth
+    }
+    this.res.end()
   }
 }
 
-function postMessage() {
+function postMessage(msg) {
   var botResponse, options, body, botReq;
 
-  botResponse = cool();
+  botResponse = msg;
 
   options = {
     hostname: 'api.groupme.com',
