@@ -32,10 +32,10 @@ function respond() {
     } else if(goodBot && !embarassed) {
       postMessage('awww, gee thanks :3');
       embarassed = true;
-    } else if(badBot) {
+    } else if(badBot && !embarassed) {
       postMessage('careful ...I have the launch codes');
       embarassed = true;
-    } else if(tobor) {
+    } else if(tobor && !embarassed) {
       postMessage('Tobor!');
       embarassed = true;
     }
