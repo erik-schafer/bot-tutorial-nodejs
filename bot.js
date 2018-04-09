@@ -4,6 +4,7 @@ var cool = require('cool-ascii-faces');
 var botID = process.env.BOT_ID;
 var embarassed = false;
 var lastSpreadsheetTime = 0;
+var evilCntr = 0;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
@@ -22,6 +23,7 @@ function respond() {
     var goodBot     = /good\s*bot/i.test(txt);
     var badBot      = /bad\s*bot/i.test(txt);
     var tobor       = /tobor/i.test(txt);
+    var album       = /^album$/i.test(txt);
     var minuteElapsed = (Date.now() - lastSpreadsheetTime) > 60000;
 
     this.res.writeHead(200);
@@ -29,15 +31,30 @@ function respond() {
       postMessage('https://docs.google.com/spreadsheets/d/1GHTWiXzSy0kVIcrUTnNgsy8MglWhNKEMzd7qAvfpNwc/edit?ouid=112045919249534101904&usp=sheets_home&ths=true');
       lastSpreadsheetTime = Date.now();
       embarassed = false;
-    } else if(goodBot && !embarassed) {
-      postMessage('awww, gee thanks :3');
-      embarassed = true;
-    } else if(badBot && !embarassed) {
-      postMessage('careful ...I have the launch codes');
-      embarassed = true;
+    } else if(goodBot) {
+      postMessage('awww, gee thanks :3'); 
+    } else if(badBot) {
+      switch(evilCntr % 4) {
+        case 0:
+          postMessage("careful ...I have the launch codes");
+        break;
+        case 1:
+          postMessage("Just what do you think you're doing, @" + request.name + "?");
+        break;
+        case 2:
+          postMessage("...get comfortable while I warm up the neurotoxin emitters");
+        break;
+        case 3:
+          postMessage("Wow, rude.")
+        break;
+      }
+      evilCntr++;
     } else if(tobor && !embarassed) {
       postMessage('Tobor!');
       embarassed = true;
+    } else if(album) {
+      postMessage("https://photos.app.goo.gl/oUEdNoidHk6Nt5j92")
+      embarassed = false;
     }
     this.res.end()
   }
