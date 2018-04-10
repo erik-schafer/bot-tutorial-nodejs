@@ -19,7 +19,7 @@ function respond() {
     //  if regex match
     //    do response
 
-    var spreadsheet = /spreadsheet/i.test(txt);
+    var spreadsheet = /^spreadsheet$/i.test(txt);
     var goodBot     = /good\s*bot/i.test(txt);
     var badBot      = /bad\s*bot/i.test(txt);
     var tobor       = /tobor/i.test(txt);
